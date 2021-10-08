@@ -2,29 +2,30 @@ const priceByKmInEuro = 0.21;
 const juniorDiscount = 0.2;
 const seniorDiscount = 0.4;
 
-let distanceKm = prompt(`Welcome to the best train ticketing service online!
+let distanceKmRaw = prompt(`Welcome to the best train ticketing service online!
 In order to calculate your ticket we need to know how many kilometers you need to cover for your travel.`);
-
-if (isNaN(parseInt(distanceKm))) {
+let distanceKmInt = parseInt(distanceKmRaw);
+if (isNaN(distanceKmInt)) {
   alert(
-    `"${distanceKm}" is a non valid value for distance. Please refresh the page and try again.`
+    `"${distanceKmRaw}" is a non valid value for distance. Please refresh the page and try again.`
   );
 } else {
-  let customerAge = prompt(`Well done! 
+  let customerAgeRaw = prompt(`Well done! 
 Can you please tell us your age in order to verify if we have any type of discount we can apply to your order?`);
-  if (isNaN(parseInt(customerAge))) {
+  let customerAgeInt = parseInt(customerAgeRaw);
+  if (isNaN(customerAgeInt)) {
     alert(
-      `"${customerAge}" is a non valid value for age. Please refresh the page and try again.`
+      `"${customerAgeRaw}" is a non valid value for age. Please refresh the page and try again.`
     );
   } else {
     let ticketDiscountPercentage = 0;
 
-    if (customerAge < 18) {
+    if (customerAgeInt < 18) {
       ticketDiscountPercentage = juniorDiscount;
       discountMessage = `Good News! We have applied a ${(
         juniorDiscount * 100
       ).toFixed(0)}% discount reserved for our junior customers!`;
-    } else if (customerAge > 65) {
+    } else if (customerAgeInt > 65) {
       ticketDiscountPercentage = seniorDiscount;
       discountMessage = `Good News! We have applied a ${(
         seniorDiscount * 100
@@ -34,7 +35,7 @@ Can you please tell us your age in order to verify if we have any type of discou
     }
 
     let finalMessage = `Thank you for choosing us!`;
-    let ticketPrice = distanceKm * priceByKmInEuro;
+    let ticketPrice = distanceKmInt * priceByKmInEuro;
     if (ticketDiscountPercentage > 0) {
       let discountedPrice = ticketPrice * (1 - ticketDiscountPercentage);
       finalMessage =
