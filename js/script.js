@@ -2,17 +2,18 @@ const priceByKmInEuro = 0.21;
 const juniorDiscount = 0.2;
 const seniorDiscount = 0.4;
 
-let distanceKmRaw = prompt(`Welcome to the best train ticketing service online!
+const distanceKmRaw =
+  prompt(`Welcome to the best train ticketing service online!
 In order to calculate your ticket we need to know how many kilometers you need to cover for your travel.`);
-let distanceKmInt = parseInt(distanceKmRaw);
-if (isNaN(distanceKmInt)) {
+const distanceKmFloat = parseFloat(distanceKmRaw.replace(",", "."));
+if (isNaN(distanceKmFloat)) {
   alert(
     `"${distanceKmRaw}" is a non valid value for distance. Please refresh the page and try again.`
   );
 } else {
-  let customerAgeRaw = prompt(`Well done! 
+  const customerAgeRaw = prompt(`Well done! 
 Can you please tell us your age in order to verify if we have any type of discount we can apply to your order?`);
-  let customerAgeInt = parseInt(customerAgeRaw);
+  const customerAgeInt = parseInt(customerAgeRaw);
   if (isNaN(customerAgeInt)) {
     alert(
       `"${customerAgeRaw}" is a non valid value for age. Please refresh the page and try again.`
@@ -35,7 +36,7 @@ Can you please tell us your age in order to verify if we have any type of discou
     }
 
     let finalMessage = `Thank you for choosing us!`;
-    let ticketPrice = distanceKmInt * priceByKmInEuro;
+    let ticketPrice = distanceKmFloat * priceByKmInEuro;
     if (ticketDiscountPercentage > 0) {
       let discountedPrice = ticketPrice * (1 - ticketDiscountPercentage);
       finalMessage =
